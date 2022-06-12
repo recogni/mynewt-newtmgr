@@ -24,7 +24,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 )
 
 type ToolInfoType struct {

@@ -34,8 +34,8 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/tarm/serial"
 
+	"github.com/recogni/newtmgr/nmxact/sesn"
 	"mynewt.apache.org/newt/util"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
 )
 
 type XportCfg struct {

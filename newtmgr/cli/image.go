@@ -29,11 +29,11 @@ import (
 	"github.com/spf13/cobra"
 	pb "gopkg.in/cheggaaa/pb.v1"
 
+	"github.com/recogni/newtmgr/newtmgr/core"
+	"github.com/recogni/newtmgr/newtmgr/nmutil"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/xact"
 	"mynewt.apache.org/newt/util"
-	"mynewt.apache.org/newtmgr/newtmgr/core"
-	"mynewt.apache.org/newtmgr/newtmgr/nmutil"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/xact"
 )
 
 var (

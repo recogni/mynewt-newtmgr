@@ -20,9 +20,9 @@
 package xact
 
 import (
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 	log "github.com/sirupsen/logrus"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
 )
 
 func txReq(s sesn.Sesn, m *nmp.NmpMsg, c *CmdBase) (

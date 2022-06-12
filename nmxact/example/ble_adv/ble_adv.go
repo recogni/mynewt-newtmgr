@@ -27,11 +27,11 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
+	"github.com/recogni/newtmgr/nmxact/nmble"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/xport"
 	"mynewt.apache.org/newt/util"
-	"mynewt.apache.org/newtmgr/nmxact/nmble"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
-	"mynewt.apache.org/newtmgr/nmxact/xport"
 )
 
 func configExitHandler(x xport.Xport, s sesn.Sesn) {

@@ -23,11 +23,11 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/recogni/newtmgr/newtmgr/nmutil"
+	"github.com/recogni/newtmgr/nmxact/lora"
+	"github.com/recogni/newtmgr/nmxact/mtech_lora"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 	"mynewt.apache.org/newt/util"
-	"mynewt.apache.org/newtmgr/newtmgr/nmutil"
-	"mynewt.apache.org/newtmgr/nmxact/lora"
-	"mynewt.apache.org/newtmgr/nmxact/mtech_lora"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
 )
 
 func NewMtechLoraConfig() *mtech_lora.LoraConfig {

@@ -28,12 +28,12 @@ import (
 
 	"github.com/spf13/cobra"
 
+	"github.com/recogni/newtmgr/newtmgr/nmutil"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/xact"
 	"mynewt.apache.org/newt/util"
-	"mynewt.apache.org/newtmgr/newtmgr/nmutil"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
-	"mynewt.apache.org/newtmgr/nmxact/xact"
 )
 
 var optLogShowFull bool

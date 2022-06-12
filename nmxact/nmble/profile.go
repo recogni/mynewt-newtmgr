@@ -20,7 +20,7 @@
 package nmble
 
 import (
-	. "mynewt.apache.org/newtmgr/nmxact/bledefs"
+	. "github.com/recogni/newtmgr/nmxact/bledefs"
 )
 
 type Descriptor struct {

@@ -27,7 +27,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
 )
 
 type Listener struct {

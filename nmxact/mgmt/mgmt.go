@@ -22,9 +22,9 @@ package mgmt
 import (
 	"fmt"
 
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/omp"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/omp"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 )
 
 func EncodeMgmt(s sesn.Sesn, m *nmp.NmpMsg) ([]byte, error) {

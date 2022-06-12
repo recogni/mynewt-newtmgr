@@ -24,17 +24,17 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
+	"github.com/recogni/newtmgr/newtmgr/bll"
+	"github.com/recogni/newtmgr/newtmgr/config"
+	"github.com/recogni/newtmgr/newtmgr/nmutil"
+	"github.com/recogni/newtmgr/nmxact/mtech_lora"
+	"github.com/recogni/newtmgr/nmxact/nmble"
+	"github.com/recogni/newtmgr/nmxact/nmcoap"
+	"github.com/recogni/newtmgr/nmxact/nmserial"
+	"github.com/recogni/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/udp"
+	"github.com/recogni/newtmgr/nmxact/xport"
 	"mynewt.apache.org/newt/util"
-	"mynewt.apache.org/newtmgr/newtmgr/bll"
-	"mynewt.apache.org/newtmgr/newtmgr/config"
-	"mynewt.apache.org/newtmgr/newtmgr/nmutil"
-	"mynewt.apache.org/newtmgr/nmxact/mtech_lora"
-	"mynewt.apache.org/newtmgr/nmxact/nmble"
-	"mynewt.apache.org/newtmgr/nmxact/nmcoap"
-	"mynewt.apache.org/newtmgr/nmxact/nmserial"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
-	"mynewt.apache.org/newtmgr/nmxact/udp"
-	"mynewt.apache.org/newtmgr/nmxact/xport"
 )
 
 var globalSesn sesn.Sesn

@@ -25,14 +25,15 @@ import (
 
 	pb "gopkg.in/cheggaaa/pb.v1"
 
-	log "github.com/sirupsen/logrus"
-	"mynewt.apache.org/newtmgr/nmxact/mgmt"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
 	"sync"
 	"sync/atomic"
 	"time"
+
+	"github.com/recogni/newtmgr/nmxact/mgmt"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/sesn"
+	log "github.com/sirupsen/logrus"
 )
 
 //////////////////////////////////////////////////////////////////////////////

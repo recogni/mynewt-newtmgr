@@ -26,12 +26,12 @@ import (
 
 	"github.com/runtimeco/go-coap"
 
-	"mynewt.apache.org/newtmgr/nmxact/mgmt"
-	"mynewt.apache.org/newtmgr/nmxact/nmcoap"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/omp"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/mgmt"
+	"github.com/recogni/newtmgr/nmxact/nmcoap"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/omp"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 )
 
 type UdpSesn struct {
@@ -120,13 +120,16 @@ func (s *UdpSesn) TxRxMgmt(m *nmp.NmpMsg,
 
 func (s *UdpSesn) TxRxMgmtAsync(m *nmp.NmpMsg,
 	timeout time.Duration, ch chan nmp.NmpRsp, errc chan error) error {
-	rsp, err := s.TxRxMgmt(m, timeout)
-	if err != nil {
-		errc <- err
-	} else {
-		ch <- rsp
+
+	if !s.IsOpen() {
+		return fmt.Errorf("Attempt to transmit over closed UDP session")
 	}
-	return nil
+
+	txRaw := func(b []byte) error {
+		_, err := s.conn.WriteToUDP(b, s.addr)
+		return err
+	}
+	return s.txvr.TxRxMgmtAsync(txRaw, m, s.MtuOut(), timeout, ch, errc)
 }
 
 func (s *UdpSesn) AbortRx(seq uint8) error {

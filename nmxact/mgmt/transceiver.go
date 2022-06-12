@@ -29,11 +29,11 @@ import (
 	"github.com/runtimeco/go-coap"
 	log "github.com/sirupsen/logrus"
 
-	"mynewt.apache.org/newtmgr/nmxact/nmcoap"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/omp"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/nmcoap"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/omp"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 )
 
 type TxFn func(req []byte) error

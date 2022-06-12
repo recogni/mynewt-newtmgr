@@ -27,14 +27,14 @@ import (
 	"github.com/runtimeco/go-coap"
 	log "github.com/sirupsen/logrus"
 
+	. "github.com/recogni/newtmgr/nmxact/bledefs"
+	"github.com/recogni/newtmgr/nmxact/mgmt"
+	"github.com/recogni/newtmgr/nmxact/nmcoap"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/task"
 	"mynewt.apache.org/newt/util"
-	. "mynewt.apache.org/newtmgr/nmxact/bledefs"
-	"mynewt.apache.org/newtmgr/nmxact/mgmt"
-	"mynewt.apache.org/newtmgr/nmxact/nmcoap"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
-	"mynewt.apache.org/newtmgr/nmxact/task"
 )
 
 type NakedSesnState int

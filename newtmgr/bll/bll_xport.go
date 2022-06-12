@@ -26,8 +26,8 @@ import (
 
 	"github.com/JuulLabs-OSS/ble"
 	"github.com/JuulLabs-OSS/ble/examples/lib/dev"
-	"mynewt.apache.org/newtmgr/nmxact/bledefs"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/bledefs"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 )
 
 type XportCfg struct {

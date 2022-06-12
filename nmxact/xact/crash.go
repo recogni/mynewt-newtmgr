@@ -23,8 +23,8 @@ import (
 	"fmt"
 	"sort"
 
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/sesn"
 )
 
 type CrashType int

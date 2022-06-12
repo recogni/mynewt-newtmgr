@@ -26,15 +26,15 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/recogni/newtmgr/newtmgr/nmutil"
+	"github.com/recogni/newtmgr/nmxact/nmcoap"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/sesn"
+	"github.com/recogni/newtmgr/nmxact/xact"
 	"github.com/runtimeco/go-coap"
 	"github.com/spf13/cast"
 	"github.com/spf13/cobra"
 	"gopkg.in/abiosoft/ishell.v2"
-	"mynewt.apache.org/newtmgr/newtmgr/nmutil"
-	"mynewt.apache.org/newtmgr/nmxact/nmcoap"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
-	"mynewt.apache.org/newtmgr/nmxact/sesn"
-	"mynewt.apache.org/newtmgr/nmxact/xact"
 )
 
 var ObserverId int

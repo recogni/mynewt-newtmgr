@@ -26,9 +26,9 @@ import (
 	"github.com/runtimeco/go-coap"
 	"github.com/ugorji/go/codec"
 
-	"mynewt.apache.org/newtmgr/nmxact/nmcoap"
-	"mynewt.apache.org/newtmgr/nmxact/nmp"
-	"mynewt.apache.org/newtmgr/nmxact/nmxutil"
+	"github.com/recogni/newtmgr/nmxact/nmcoap"
+	"github.com/recogni/newtmgr/nmxact/nmp"
+	"github.com/recogni/newtmgr/nmxact/nmxutil"
 )
 
 // OIC wrapping adds this many bytes to an NMP message.  Calculated by
