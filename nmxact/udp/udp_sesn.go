@@ -125,11 +125,16 @@ func (s *UdpSesn) TxRxMgmtAsync(m *nmp.NmpMsg,
 		return fmt.Errorf("Attempt to transmit over closed UDP session")
 	}
 
+	txDone := make(chan int, 1)
+
 	txRaw := func(b []byte) error {
 		_, err := s.conn.WriteToUDP(b, s.addr)
+		txDone <- 1
 		return err
 	}
-	return s.txvr.TxRxMgmtAsync(txRaw, m, s.MtuOut(), timeout, ch, errc)
+	err := s.txvr.TxRxMgmtAsync(txRaw, m, s.MtuOut(), timeout, ch, errc)
+	<- txDone
+	return err
 }
 
 func (s *UdpSesn) AbortRx(seq uint8) error {
