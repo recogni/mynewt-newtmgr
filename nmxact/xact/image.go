@@ -29,6 +29,7 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/recogni/newtmgr/newtmgr/nmutil"
 	"github.com/recogni/newtmgr/nmxact/mgmt"
 	"github.com/recogni/newtmgr/nmxact/nmp"
 	"github.com/recogni/newtmgr/nmxact/nmxutil"
@@ -243,7 +244,7 @@ func (t *ImageUploadIntTracker) CheckWindow() bool {
 	return t.WCount < t.WCap
 }
 
-func (t *ImageUploadIntTracker) ProcessMissedChunks() {
+func (t *ImageUploadIntTracker) ProcessMissedChunks(d time.Duration) {
 	t.Mutex.Lock()
 	defer t.Mutex.Unlock()
 	for o, c := range t.RspMap {
@@ -251,6 +252,14 @@ func (t *ImageUploadIntTracker) ProcessMissedChunks() {
 			delete(t.RspMap, o)
 			t.Off = o
 			log.Debugf("missed? off %d count %d", o, c)
+			if d < 3 * time.Second {
+				t.Mutex.Unlock()
+				time.Sleep(d)
+				t.Mutex.Lock()
+				t.RspMap = make(map[int]int)
+				t.TuneWS = true
+				break
+			}
 		}
 		// clean up done chunks
 		if c == 0 {
@@ -311,7 +320,9 @@ func (t *ImageUploadIntTracker) HandleError(off int, err error) bool {
 	if t.WCount > IMAGE_UPLOAD_START_WS+1 {
 		t.WCap -= 1
 	}
-	t.TuneWS = false
+	if off > 0 {
+		t.TuneWS = false
+	}
 	t.WCount -= 1
 	t.UpdateTracker(off, IMAGE_UPLOAD_STATUS_MISSED)
 
@@ -344,7 +355,7 @@ func (c *ImageUploadCmd) Run(s sesn.Sesn) (Result, error) {
 			ch <- 1
 		}
 
-		t.ProcessMissedChunks()
+		t.ProcessMissedChunks(c.TxOptions().Timeout)
 
 		if t.Off == len(c.Data) {
 			continue
@@ -498,6 +509,9 @@ func (c *ImageUpgradeCmd) runUpload(s sesn.Sesn) (*ImageUploadResult, error) {
 		var opt = sesn.TxOptions{
 			Timeout: 3 * time.Second,
 			Tries:   1,
+		}
+		if nmutil.Timeout < float64(opt.Timeout / time.Second) {
+			opt.Timeout = time.Duration(nmutil.Timeout * float64(time.Second))
 		}
 		cmd := NewImageUploadCmd()
 		cmd.Data = c.Data
