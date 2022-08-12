@@ -94,7 +94,7 @@ func fsUploadRunCmd(cmd *cobra.Command, args []string) {
 	c.Name = args[1]
 	c.Data = data
 	c.ProgressCb = func(c *xact.FsUploadCmd, rsp *nmp.FsUploadRsp) {
-		fmt.Printf("%d\n", rsp.Off)
+		fmt.Printf("%d\r", rsp.Off)
 	}
 
 	res, err := c.Run(s)
