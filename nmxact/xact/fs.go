@@ -138,6 +138,7 @@ func buildFsUploadReq(name string, fileSz int, chunk []byte,
 	return r
 }
 
+const MAX_FS_UPLOAD_CHUNK = 1300
 func nextFsUploadReq(s sesn.Sesn, name string, data []byte, off int) (
 	*nmp.FsUploadReq, error) {
 
@@ -149,7 +150,7 @@ func nextFsUploadReq(s sesn.Sesn, name string, data []byte, off int) (
 		return nil, err
 	}
 
-	room := s.MtuOut() - len(emptyEnc)
+	room := min(s.MtuOut(), MAX_FS_UPLOAD_CHUNK) - len(emptyEnc)
 	if room <= 0 {
 		return nil, fmt.Errorf("Cannot create file upload request; " +
 			"MTU too low to fit any file data")
@@ -169,7 +170,7 @@ func nextFsUploadReq(s sesn.Sesn, name string, data []byte, off int) (
 		return nil, err
 	}
 
-	oversize := len(enc) - s.MtuOut()
+	oversize := len(enc) - min(s.MtuOut(), MAX_FS_UPLOAD_CHUNK)
 	if oversize > 0 {
 		// Request too big.  Reduce the amount of file data.
 		r = buildFsUploadReq(name, len(data), data[off:off+room-oversize], off)
