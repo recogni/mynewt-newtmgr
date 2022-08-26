@@ -30,7 +30,7 @@ import (
 //////////////////////////////////////////////////////////////////////////////
 
 // Recogni: Limit the max file system based upload chunk size to 1300 bytes.
-const cMaxFSUploadChunk = 1300
+const cMaxFSUploadChunk = 1024
 
 //////////////////////////////////////////////////////////////////////////////
 // $download                                                                //
@@ -146,15 +146,7 @@ func buildFsUploadReq(name string, fileSz int, chunk []byte,
 func nextFsUploadReq(s sesn.Sesn, name string, data []byte, off int) (
 	*nmp.FsUploadReq, error) {
 
-	// First, build a request without data to determine how much data could
-	// fit.
-	empty := buildFsUploadReq(name, len(data), nil, off)
-	emptyEnc, err := mgmt.EncodeMgmt(s, empty.Msg())
-	if err != nil {
-		return nil, err
-	}
-
-	room := min(s.MtuOut(), cMaxFSUploadChunk) - len(emptyEnc)
+	room := cMaxFSUploadChunk
 	if room <= 0 {
 		return nil, fmt.Errorf("Cannot create file upload request; " +
 			"MTU too low to fit any file data")
@@ -174,7 +166,7 @@ func nextFsUploadReq(s sesn.Sesn, name string, data []byte, off int) (
 		return nil, err
 	}
 
-	oversize := len(enc) - min(s.MtuOut(), cMaxFSUploadChunk)
+	oversize := len(enc) - s.MtuOut()
 	if oversize > 0 {
 		// Request too big.  Reduce the amount of file data.
 		r = buildFsUploadReq(name, len(data), data[off:off+room-oversize], off)
