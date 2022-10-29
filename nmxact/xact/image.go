@@ -40,7 +40,7 @@ import (
 //////////////////////////////////////////////////////////////////////////////
 // $upload                                                                  //
 //////////////////////////////////////////////////////////////////////////////
-const IMAGE_UPLOAD_MAX_CHUNK = 512
+const IMAGE_UPLOAD_MAX_CHUNK = 1024
 const IMAGE_UPLOAD_MIN_1ST_CHUNK = 32
 const IMAGE_UPLOAD_STATUS_MISSED = -1
 const IMAGE_UPLOAD_CHUNK_MISSED_WM = -1
@@ -133,8 +133,14 @@ func findChunkLen(s sesn.Sesn, hash []byte, upgrade bool, data []byte,
 	off int, imageNum int, seq uint8) (int, error) {
 
 	// Let's start by encoding max allowed chunk len and we will see how many
-	// bytes we need to cut
-	chunklen := min(len(data)-off, IMAGE_UPLOAD_MAX_CHUNK)
+	// bytes we need to cut.
+	// First chunk needs to be header sized.
+	var chunklen int
+	if off == 0 {
+		chunklen = min(len(data), 512)
+	} else {
+		chunklen = min(len(data)-off, IMAGE_UPLOAD_MAX_CHUNK)
+	}
 
 	// Keep reducing the chunk size until the request fits the MTU.
 	for {
