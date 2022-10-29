@@ -42,6 +42,7 @@ import (
 //////////////////////////////////////////////////////////////////////////////
 const IMAGE_UPLOAD_MAX_CHUNK = 1024
 const IMAGE_UPLOAD_MIN_1ST_CHUNK = 32
+const IMAGE_UPLOAD_MAX_1ST_CHUNK = 512
 const IMAGE_UPLOAD_STATUS_MISSED = -1
 const IMAGE_UPLOAD_CHUNK_MISSED_WM = -1
 const IMAGE_UPLOAD_START_WS = 1
@@ -137,7 +138,7 @@ func findChunkLen(s sesn.Sesn, hash []byte, upgrade bool, data []byte,
 	// First chunk needs to be header sized.
 	var chunklen int
 	if off == 0 {
-		chunklen = min(len(data), 512)
+		chunklen = min(len(data), IMAGE_UPLOAD_MAX_1ST_CHUNK)
 	} else {
 		chunklen = min(len(data)-off, IMAGE_UPLOAD_MAX_CHUNK)
 	}
